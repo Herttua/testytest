@@ -6,7 +6,7 @@ public class LevelLoader : MonoBehaviour
 {
     public void LoadLevel(int sceneIndex)
     {
-
+        StartCoroutine(LoadAsynchronously(sceneIndex));
     }
 
     IEnumerator LoadAsynchronously(int sceneIndex)
@@ -15,9 +15,9 @@ public class LevelLoader : MonoBehaviour
 
         while(!operation.isDone)
         {
-
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            Debug.Log(progress);
+            yield return null;
         }
-
-        yield return null;
     }
 }
